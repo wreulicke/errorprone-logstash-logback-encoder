@@ -1,0 +1,18 @@
+[versions]
+errorprone = "2.27.1"
+slf4j = "2.0.12"
+
+[libraries]
+errorprone-check-api = { module = "com.google.errorprone:error_prone_check_api", version.ref = "errorprone" }
+errorprone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
+errorprone-test-helpers = { module = "com.google.errorprone:error_prone_test_helpers", version.ref = "errorprone" }
+auto-service = { module = "com.google.auto.service:auto-service", version = "1.0.1" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version = "5.10.2" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.10.2" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+logback-classic = 'ch.qos.logback:logback-classic:1.4.14'
+logstash-logback-encoder = "net.logstash.logback:logstash-logback-encoder:7.4"
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
+errorprone = { id = "net.ltgt.errorprone", version = "3.1.0" }
