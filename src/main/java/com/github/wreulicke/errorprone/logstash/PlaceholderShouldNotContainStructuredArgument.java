@@ -1,4 +1,4 @@
-package com.github.wreulicke.errorprone.logback;
+package com.github.wreulicke.errorprone.logstash;
 
 import static com.google.errorprone.matchers.Matchers.isSubtypeOf;
 

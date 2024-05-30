@@ -15,7 +15,7 @@ plugins {
     alias(libs.plugins.spotless)
 }
 
-group = "com.github.wreulicke.errorprone.logback"
+group = "com.github.wreulicke.errorprone.logstash"
 
 repositories {
     mavenCentral()
