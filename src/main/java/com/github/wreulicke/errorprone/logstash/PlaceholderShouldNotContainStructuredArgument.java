@@ -38,6 +38,7 @@ public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
 
   private static final Matcher<ExpressionTree> STRUCTURED_ARGUMENT =
       com.google.errorprone.matchers.Matchers.isSubtypeOf(FQCN_STRUCTURED_ARGUMENT);
+  private static final Pattern PATTERN = Pattern.compile("\\{\\}");
 
   @Override
   public Description matchMethodInvocation(MethodInvocationTree tree, VisitorState state) {
@@ -62,15 +63,11 @@ public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
     if (constant == null) {
       return Description.NO_MATCH;
     }
-    String format = constant.toString();
-    if (!format.contains("{}")) {
-      return Description.NO_MATCH;
-    }
 
+    String format = constant.toString();
     int i = formatIndex + 1;
     int placeholderCount = 0;
-    Pattern pattern = Pattern.compile("\\{\\}");
-    java.util.regex.Matcher matcher = pattern.matcher(format);
+    java.util.regex.Matcher matcher = PATTERN.matcher(format);
     while (matcher.find()) {
       placeholderCount++;
       if (i >= arguments.size()) {

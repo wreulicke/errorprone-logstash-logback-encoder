@@ -192,4 +192,27 @@ class LogstashLogbackEncoderPlaceholderShouldNotContainStructuredArgumentTest {
                """)
         .doTest();
   }
+
+  @Test
+  void testMismatch2() {
+    CompilationTestHelper helper =
+        CompilationTestHelper.newInstance(
+            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+    helper
+        .addSourceLines(
+            "Test.java",
+            """
+               import org.slf4j.Logger;
+               import net.logstash.logback.argument.StructuredArguments;
+               public class Test {
+                 private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Test.class);
+
+                 public void test() {
+                   // BUG: Diagnostic contains: count of placeholders does not match with the count of arguments
+                   logger.info("", StructuredArguments.keyValue("key", "value"), "safe", StructuredArguments.keyValue("key", "value"));
+                 }
+               }
+               """)
+        .doTest();
+  }
 }
