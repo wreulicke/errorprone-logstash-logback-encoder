@@ -6,6 +6,22 @@ This module provides custom Error Prone checks for slf4j and logstash-logback-en
 This module doesn't cover all situations in slf4j misuses.
 So, also use [errorprone-slf4j] to detect more slf4j misuses.
 
+## Install
+
+### Maven
+
+TBD
+
+### Gradle
+
+```ruby
+dependencies {
+  annotationProcessor 'io.github.wreulicke.errorprone.logstash:errorprone-logback-logstash-encoder:0.0.1'
+  # or you can write below when you use net.ltgt.errorprone plugin
+  errorprone 'io.github.wreulicke.errorprone.logstash:errorprone-logback-logstash-encoder:0.0.1'
+}
+```
+
 ## Rules
 
 - [Slf4jPlaceholderShouldNotContainStructuredArgument](#slf4jplaceholdershouldnotcontainstructuredargument)
