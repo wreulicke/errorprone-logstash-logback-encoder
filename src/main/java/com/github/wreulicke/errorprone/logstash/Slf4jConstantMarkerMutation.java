@@ -22,6 +22,7 @@ import javax.lang.model.element.Modifier;
 public class Slf4jConstantMarkerMutation extends BugChecker
     implements BugChecker.MethodInvocationTreeMatcher {
 
+  // with & and are LogstashMarker methods
   private static final Matcher<ExpressionTree> MATCHER =
       Matchers.instanceMethod()
           .onDescendantOf("org.slf4j.Marker")
