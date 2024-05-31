@@ -40,6 +40,9 @@ public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
     }
     List<? extends ExpressionTree> arguments = tree.getArguments();
     int argumentSize = arguments.size() - 1;
+    if (argumentSize < 0) { // case fluent api. ex. logger.atInfo().setMessage("message").log()
+      return Description.NO_MATCH;
+    }
 
     int formatIndex = 0;
     if (IS_MARKER.matches(arguments.get(0), state)) {
@@ -84,7 +87,7 @@ public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
     }
     if (placeholderCount != argumentSize - structuredArgumentCount) {
       return buildDescription(tree)
-          .setMessage("count of placeholders does not match with the count of arguments")
+          .setMessage("count of placeholders does not match with the count of arguments without StructuredArgument")
           .build();
     }
 
