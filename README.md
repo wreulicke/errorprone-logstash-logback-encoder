@@ -18,7 +18,7 @@ So, also use [errorprone-slf4j] to detect more slf4j misuses.
 Slf4jPlaceholderShouldNotContainStructuredArgument rule prevents placeholder contain StructuredArgument.
 This also detects placeholder mismatch.
 
-This rule conflicts with Slf4jPlaceholderMismatch in [errorprone-slf4j]
+This rule conflicts with Slf4jPlaceholderMismatch in [errorprone-slf4j].
 So you should disable the Slf4jPlaceholderMismatch rule if you use this rule.
 
 ```java
@@ -120,6 +120,10 @@ public class Test {
  }
 }
 ```
+
+## TODO
+
+- Suggested Fix for Slf4jConstantMarkerMutation
 
 
 ## License
