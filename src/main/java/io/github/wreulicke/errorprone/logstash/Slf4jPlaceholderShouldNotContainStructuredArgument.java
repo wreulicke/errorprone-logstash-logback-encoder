@@ -1,6 +1,5 @@
-package com.github.wreulicke.errorprone.logstash;
+package io.github.wreulicke.errorprone.logstash;
 
-import static com.github.wreulicke.errorprone.logstash.Constants.*;
 import static com.google.errorprone.matchers.Matchers.isSubtypeOf;
 
 import com.google.auto.service.AutoService;
@@ -33,7 +32,7 @@ public class Slf4jPlaceholderShouldNotContainStructuredArgument extends BugCheck
 
   @Override
   public Description matchMethodInvocation(MethodInvocationTree tree, VisitorState state) {
-    if (!LOGGING_METHOD.matches(tree, state)) {
+    if (!Constants.LOGGING_METHOD.matches(tree, state)) {
       return Description.NO_MATCH;
     }
     List<? extends ExpressionTree> arguments = tree.getArguments();
@@ -43,7 +42,7 @@ public class Slf4jPlaceholderShouldNotContainStructuredArgument extends BugCheck
     int argumentSize = arguments.size() - 1;
 
     int formatIndex = 0;
-    if (IS_MARKER.matches(arguments.get(0), state)) {
+    if (Constants.IS_MARKER.matches(arguments.get(0), state)) {
       argumentSize--;
       formatIndex = 1;
     }
@@ -58,7 +57,7 @@ public class Slf4jPlaceholderShouldNotContainStructuredArgument extends BugCheck
     String format = constant.toString();
     int i = formatIndex + 1;
     int placeholderCount = 0;
-    java.util.regex.Matcher matcher = PLACEHOLDER_PATTERN.matcher(format);
+    java.util.regex.Matcher matcher = Constants.PLACEHOLDER_PATTERN.matcher(format);
     while (matcher.find()) {
       placeholderCount++;
       if (i >= arguments.size()) {

@@ -1,4 +1,4 @@
-package com.github.wreulicke.errorprone.logstash;
+package io.github.wreulicke.errorprone.logstash;
 
 import com.google.auto.service.AutoService;
 import com.google.errorprone.BugPattern;
