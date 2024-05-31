@@ -61,6 +61,7 @@ class Slf4jDoNotUsePlaceholderTest {
                  public void test() {
                    // BUG: Diagnostic contains: format should not contain placeholder. use structured argument instead.
                    logger.atInfo().setMessage("{}").log();
+
                    // BUG: Diagnostic contains: format should not contain placeholder. use structured argument instead.
                    logger.atInfo().log("{}");
                  }

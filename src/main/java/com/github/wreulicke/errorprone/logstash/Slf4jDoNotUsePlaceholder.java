@@ -45,8 +45,7 @@ public class Slf4jDoNotUsePlaceholder extends BugChecker
     java.util.regex.Matcher matcher = PLACEHOLDER_PATTERN.matcher(format);
     if (matcher.find()) {
       return buildDescription(tree)
-          .setMessage(
-              "format should not contain placeholder. use structured argument instead.")
+          .setMessage("format should not contain placeholder. use structured argument instead.")
           .build();
     }
 
