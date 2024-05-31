@@ -7,6 +7,34 @@ import org.junit.jupiter.api.Test;
 class Slf4jPlaceholderShouldNotContainStructuredArgumentTest {
 
   @Test
+  void testValid() {
+    CompilationTestHelper helper =
+        CompilationTestHelper.newInstance(
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
+    helper
+        .addSourceLines(
+            "Test.java",
+            """
+               import org.slf4j.Logger;
+               import net.logstash.logback.argument.StructuredArguments;
+               public class Test {
+                 private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Test.class);
+
+                 public void test() {
+                   // false positive but it's ok because it covers Slf4jFormatShouldBeConst
+                   var message = "{}";
+                   logger.info(message, StructuredArguments.keyValue("key", "value"));
+                   // valid
+                   logger.info("safe");
+                   // valid
+                   logger.info("safe", new Exception());
+                 }
+               }
+               """)
+        .doTest();
+  }
+
+  @Test
   void testSimple() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(

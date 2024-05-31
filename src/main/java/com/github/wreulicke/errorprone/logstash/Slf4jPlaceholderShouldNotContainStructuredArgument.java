@@ -50,9 +50,6 @@ public class Slf4jPlaceholderShouldNotContainStructuredArgument extends BugCheck
     if (IS_THROWABLE.matches(arguments.get(arguments.size() - 1), state)) {
       argumentSize--;
     }
-    if (argumentSize < 0) {
-      return Description.NO_MATCH;
-    }
     Object constant = ASTHelpers.constValue(tree.getArguments().get(formatIndex));
     if (constant == null) {
       return Description.NO_MATCH;
