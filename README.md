@@ -43,7 +43,7 @@ public class Test {
 ### Slf4jDoNotUsePlaceholder
 
 Slf4jDoNotUsePlaceholder rule prevents using placeholder in log message.
-This rule is stricter than Slf4jSignOnlyFormat in [errorprone-slf4j]
+This rule is stricter than Slf4jSignOnlyFormat in [errorprone-slf4j].
 
 ```java
 import org.slf4j.Logger;
