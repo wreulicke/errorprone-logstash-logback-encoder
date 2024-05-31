@@ -1,5 +1,6 @@
 package com.github.wreulicke.errorprone.logstash;
 
+import static com.github.wreulicke.errorprone.logstash.Constants.*;
 import static com.google.errorprone.matchers.Matchers.isSubtypeOf;
 
 import com.google.auto.service.AutoService;
@@ -24,21 +25,13 @@ import java.util.regex.Pattern;
 public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
     implements BugChecker.MethodInvocationTreeMatcher {
 
-  private static final Matcher<ExpressionTree> IS_MARKER = isSubtypeOf("org.slf4j.Marker");
-  private static final Matcher<ExpressionTree> IS_THROWABLE = isSubtypeOf("java.lang.Throwable");
-  private static final String FQCN_SLF4J_LOGGER = "org.slf4j.Logger";
   private static final String FQCN_STRUCTURED_ARGUMENT =
       "net.logstash.logback.argument.StructuredArgument";
 
-  // TODO: support fluent API
-  private static final Matcher<ExpressionTree> LOGGING_METHOD =
-      MethodMatchers.instanceMethod()
-          .onDescendantOf(FQCN_SLF4J_LOGGER)
-          .withNameMatching(Pattern.compile("info|debug|trace|warn|error"));
+  private static final Matcher<ExpressionTree> IS_THROWABLE = isSubtypeOf("java.lang.Throwable");
 
   private static final Matcher<ExpressionTree> STRUCTURED_ARGUMENT =
       com.google.errorprone.matchers.Matchers.isSubtypeOf(FQCN_STRUCTURED_ARGUMENT);
-  private static final Pattern PATTERN = Pattern.compile("\\{\\}");
 
   @Override
   public Description matchMethodInvocation(MethodInvocationTree tree, VisitorState state) {
@@ -67,7 +60,7 @@ public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
     String format = constant.toString();
     int i = formatIndex + 1;
     int placeholderCount = 0;
-    java.util.regex.Matcher matcher = PATTERN.matcher(format);
+    java.util.regex.Matcher matcher = PLACEHOLDER_PATTERN.matcher(format);
     while (matcher.find()) {
       placeholderCount++;
       if (i >= arguments.size()) {
