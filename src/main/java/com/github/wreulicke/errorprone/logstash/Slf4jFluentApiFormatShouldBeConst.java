@@ -14,7 +14,7 @@ import java.util.List;
 
 @AutoService(BugChecker.class)
 @BugPattern(
-    summary = "logging message should be constant",
+    summary = "format should be constant",
     severity = BugPattern.SeverityLevel.ERROR,
     link = "github.com/wreulicke/errorprone-logback-logstash-encoder",
     linkType = BugPattern.LinkType.CUSTOM)
