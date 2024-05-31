@@ -11,6 +11,7 @@ import com.sun.source.tree.ExpressionTree;
 import com.sun.source.tree.MethodInvocationTree;
 import com.sun.tools.javac.tree.JCTree;
 import java.util.regex.Pattern;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 
 @AutoService(BugChecker.class)
@@ -35,7 +36,10 @@ public class Slf4jConstantMarkerMutation extends BugChecker
     }
 
     if (tree.getMethodSelect() instanceof JCTree.JCFieldAccess access) {
-      if (Matchers.allOf(Matchers.staticFieldAccess(), Matchers.hasModifier(Modifier.FINAL))
+      if (Matchers.allOf(
+              Matchers.symbolMatcher(
+                  (symbol, visitorState) -> symbol.getKind() == ElementKind.FIELD),
+              Matchers.hasModifier(Modifier.FINAL))
           .matches(access.getExpression(), state)) {
         return buildDescription(tree)
             .setMessage(
