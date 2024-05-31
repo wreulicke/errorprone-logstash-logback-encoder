@@ -36,6 +36,11 @@ class Slf4jFluentApiFormatShouldBeConstTest {
 
                    // BUG: Diagnostic contains: format should be constant
                    logger.atInfo().setMessage(message).log();
+
+                   // valid
+                   logger.atInfo().setMessage("safe").log();
+                   // valid
+                   logger.atInfo().log("safe");
                  }
                }
                """)
