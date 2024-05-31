@@ -220,14 +220,14 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   class Fluent {
 
     @Test
-    void test () {
-        CompilationTestHelper helper =
-            CompilationTestHelper.newInstance(
-                PlaceholderShouldNotContainStructuredArgument.class, getClass());
-        helper
-            .addSourceLines(
-                "Test.java",
-                """
+    void test() {
+      CompilationTestHelper helper =
+          CompilationTestHelper.newInstance(
+              PlaceholderShouldNotContainStructuredArgument.class, getClass());
+      helper
+          .addSourceLines(
+              "Test.java",
+              """
                  import org.slf4j.Logger;
                  import org.slf4j.Marker;
                  import org.slf4j.MarkerFactory;
@@ -235,19 +235,17 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
                  public class Test {
                      private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Test.class);
                      private static final Marker MARKER = MarkerFactory.getMarker("marker");
-                     
+
                      public void test() {
                        // BUG: Diagnostic contains: placeholder should not contain StructuredArgument
                        logger.atInfo().log("{}", StructuredArguments.keyValue("key", "value"));
-                       
+
                        // false positive
                        logger.atInfo().setMessage("{}").addArgument(StructuredArguments.keyValue("key", "value")).log();
                      }
                  }
                  """)
-            .doTest();
+          .doTest();
     }
-
   }
-
 }

@@ -9,12 +9,10 @@ import com.google.errorprone.VisitorState;
 import com.google.errorprone.bugpatterns.BugChecker;
 import com.google.errorprone.matchers.Description;
 import com.google.errorprone.matchers.Matcher;
-import com.google.errorprone.matchers.method.MethodMatchers;
 import com.google.errorprone.util.ASTHelpers;
 import com.sun.source.tree.ExpressionTree;
 import com.sun.source.tree.MethodInvocationTree;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @AutoService(BugChecker.class)
 @BugPattern(
@@ -39,10 +37,10 @@ public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
       return Description.NO_MATCH;
     }
     List<? extends ExpressionTree> arguments = tree.getArguments();
-    int argumentSize = arguments.size() - 1;
-    if (argumentSize < 0) { // case fluent api. ex. logger.atInfo().setMessage("message").log()
+    if (arguments.isEmpty()) { // case fluent api. ex. logger.atInfo().setMessage("message").log()
       return Description.NO_MATCH;
     }
+    int argumentSize = arguments.size() - 1;
 
     int formatIndex = 0;
     if (IS_MARKER.matches(arguments.get(0), state)) {
@@ -87,7 +85,8 @@ public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
     }
     if (placeholderCount != argumentSize - structuredArgumentCount) {
       return buildDescription(tree)
-          .setMessage("count of placeholders does not match with the count of arguments without StructuredArgument")
+          .setMessage(
+              "count of placeholders does not match with the count of arguments without StructuredArgument")
           .build();
     }
 

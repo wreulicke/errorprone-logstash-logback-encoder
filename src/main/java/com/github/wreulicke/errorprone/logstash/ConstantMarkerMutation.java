@@ -37,7 +37,8 @@ public class ConstantMarkerMutation extends BugChecker
       if (Matchers.allOf(Matchers.staticFieldAccess(), Matchers.hasModifier(Modifier.FINAL))
           .matches(access.getExpression(), state)) {
         return buildDescription(tree)
-            .setMessage("Constant marker should not mutate, or use net.logstash.logback.marker.Markers.aggregate instead")
+            .setMessage(
+                "Constant marker should not mutate, or use net.logstash.logback.marker.Markers.aggregate instead")
             .build();
       }
     }
