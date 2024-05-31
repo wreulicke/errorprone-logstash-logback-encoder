@@ -1,6 +1,7 @@
 package com.github.wreulicke.errorprone.logstash;
 
 import com.google.errorprone.CompilationTestHelper;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class PlaceholderShouldNotContainStructuredArgumentTest {
@@ -184,7 +185,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
                  private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Test.class);
 
                  public void test() {
-                   // BUG: Diagnostic contains: count of placeholders does not match with the count of arguments
+                   // BUG: Diagnostic contains: count of placeholders does not match with the count of arguments without StructuredArgument
                    logger.info("{}");
                  }
                }
@@ -207,11 +208,46 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
                  private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Test.class);
 
                  public void test() {
-                   // BUG: Diagnostic contains: count of placeholders does not match with the count of arguments
+                   // BUG: Diagnostic contains: count of placeholders does not match with the count of arguments without StructuredArgument
                    logger.info("", StructuredArguments.keyValue("key", "value"), "safe", StructuredArguments.keyValue("key", "value"));
                  }
                }
                """)
         .doTest();
   }
+
+  @Nested
+  class Fluent {
+
+    @Test
+    void test () {
+        CompilationTestHelper helper =
+            CompilationTestHelper.newInstance(
+                PlaceholderShouldNotContainStructuredArgument.class, getClass());
+        helper
+            .addSourceLines(
+                "Test.java",
+                """
+                 import org.slf4j.Logger;
+                 import org.slf4j.Marker;
+                 import org.slf4j.MarkerFactory;
+                 import net.logstash.logback.argument.StructuredArguments;
+                 public class Test {
+                     private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Test.class);
+                     private static final Marker MARKER = MarkerFactory.getMarker("marker");
+                     
+                     public void test() {
+                       // BUG: Diagnostic contains: placeholder should not contain StructuredArgument
+                       logger.atInfo().log("{}", StructuredArguments.keyValue("key", "value"));
+                       
+                       // false positive
+                       logger.atInfo().setMessage("{}").addArgument(StructuredArguments.keyValue("key", "value")).log();
+                     }
+                 }
+                 """)
+            .doTest();
+    }
+
+  }
+
 }
