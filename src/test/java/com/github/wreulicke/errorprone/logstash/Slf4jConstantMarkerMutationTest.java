@@ -3,12 +3,12 @@ package com.github.wreulicke.errorprone.logstash;
 import com.google.errorprone.CompilationTestHelper;
 import org.junit.jupiter.api.Test;
 
-class ConstantMarkerMutationTest {
+class Slf4jConstantMarkerMutationTest {
 
   @Test
   void testAdd() {
     CompilationTestHelper helper =
-        CompilationTestHelper.newInstance(ConstantMarkerMutation.class, getClass());
+        CompilationTestHelper.newInstance(Slf4jConstantMarkerMutation.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -30,7 +30,7 @@ class ConstantMarkerMutationTest {
   @Test
   void testWith() {
     CompilationTestHelper helper =
-        CompilationTestHelper.newInstance(ConstantMarkerMutation.class, getClass());
+        CompilationTestHelper.newInstance(Slf4jConstantMarkerMutation.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -52,7 +52,7 @@ class ConstantMarkerMutationTest {
   @Test
   void testInitialization() {
     CompilationTestHelper helper =
-        CompilationTestHelper.newInstance(ConstantMarkerMutation.class, getClass());
+        CompilationTestHelper.newInstance(Slf4jConstantMarkerMutation.class, getClass());
     helper
         .addSourceLines(
             "Test.java",

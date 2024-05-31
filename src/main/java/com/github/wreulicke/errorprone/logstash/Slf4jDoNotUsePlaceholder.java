@@ -19,7 +19,7 @@ import java.util.List;
     severity = BugPattern.SeverityLevel.ERROR,
     link = "github.com/wreulicke/errorprone-logback-logstash-encoder",
     linkType = BugPattern.LinkType.CUSTOM)
-public class DoNotUsePlaceholder extends BugChecker
+public class Slf4jDoNotUsePlaceholder extends BugChecker
     implements BugChecker.MethodInvocationTreeMatcher {
 
   @Override

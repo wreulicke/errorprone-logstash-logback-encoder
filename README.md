@@ -1,10 +1,10 @@
 # errorprone-logstash-logback-encoder
 
-Detect misusages when you use slf4j and logstash-logback-encoder.
+Detect misuses when you use slf4j and logstash-logback-encoder.
 
-## Rule: PlaceholderShouldNotContainStructuredArgument
+## Rule: Slf4jPlaceholderShouldNotContainStructuredArgument
 
-PlaceholderShouldNotContainStructuredArgument rule prevents placeholder contain StructuredArgument.
+Slf4jPlaceholderShouldNotContainStructuredArgument rule prevents placeholder contain StructuredArgument.
 This also detects placeholder mismatch.
 
 ```java

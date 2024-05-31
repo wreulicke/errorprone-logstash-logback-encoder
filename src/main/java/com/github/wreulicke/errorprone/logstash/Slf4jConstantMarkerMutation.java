@@ -19,7 +19,7 @@ import javax.lang.model.element.Modifier;
     severity = BugPattern.SeverityLevel.ERROR,
     link = "github.com/wreulicke/errorprone-logback-logstash-encoder",
     linkType = BugPattern.LinkType.CUSTOM)
-public class ConstantMarkerMutation extends BugChecker
+public class Slf4jConstantMarkerMutation extends BugChecker
     implements BugChecker.MethodInvocationTreeMatcher {
 
   private static final Matcher<ExpressionTree> MATCHER =

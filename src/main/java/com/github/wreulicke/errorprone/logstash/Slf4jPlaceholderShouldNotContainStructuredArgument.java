@@ -20,7 +20,7 @@ import java.util.List;
     severity = BugPattern.SeverityLevel.ERROR,
     link = "github.com/wreulicke/errorprone-logback-logstash-encoder",
     linkType = BugPattern.LinkType.CUSTOM)
-public class PlaceholderShouldNotContainStructuredArgument extends BugChecker
+public class Slf4jPlaceholderShouldNotContainStructuredArgument extends BugChecker
     implements BugChecker.MethodInvocationTreeMatcher {
 
   private static final String FQCN_STRUCTURED_ARGUMENT =

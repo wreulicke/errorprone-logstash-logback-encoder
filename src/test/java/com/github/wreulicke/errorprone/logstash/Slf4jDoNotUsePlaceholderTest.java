@@ -3,12 +3,12 @@ package com.github.wreulicke.errorprone.logstash;
 import com.google.errorprone.CompilationTestHelper;
 import org.junit.jupiter.api.Test;
 
-class DoNotUsePlaceholderTest {
+class Slf4jDoNotUsePlaceholderTest {
 
   @Test
   public void test() {
     CompilationTestHelper helper =
-        CompilationTestHelper.newInstance(DoNotUsePlaceholder.class, getClass());
+        CompilationTestHelper.newInstance(Slf4jDoNotUsePlaceholder.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -45,7 +45,7 @@ class DoNotUsePlaceholderTest {
   @Test
   void testFluentAPI() {
     CompilationTestHelper helper =
-        CompilationTestHelper.newInstance(DoNotUsePlaceholder.class, getClass());
+        CompilationTestHelper.newInstance(Slf4jDoNotUsePlaceholder.class, getClass());
     helper
         .addSourceLines(
             "Test.java",

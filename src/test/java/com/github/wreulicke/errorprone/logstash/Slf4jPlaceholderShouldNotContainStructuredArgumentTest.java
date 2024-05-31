@@ -4,13 +4,13 @@ import com.google.errorprone.CompilationTestHelper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class PlaceholderShouldNotContainStructuredArgumentTest {
+class Slf4jPlaceholderShouldNotContainStructuredArgumentTest {
 
   @Test
   void testSimple() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -33,7 +33,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   void testCorrect() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -55,7 +55,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   void testLastArgumentIsStructuredArgument() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -78,7 +78,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   void testMiddleArgumentIsStructuredArgument() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -101,7 +101,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   void testMarker() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -127,7 +127,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   void testThrowable() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -149,7 +149,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   void testMarkerAndThrowable() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -174,7 +174,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   void testMismatch() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -197,7 +197,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
   void testMismatch2() {
     CompilationTestHelper helper =
         CompilationTestHelper.newInstance(
-            PlaceholderShouldNotContainStructuredArgument.class, getClass());
+            Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
     helper
         .addSourceLines(
             "Test.java",
@@ -223,7 +223,7 @@ class PlaceholderShouldNotContainStructuredArgumentTest {
     void test() {
       CompilationTestHelper helper =
           CompilationTestHelper.newInstance(
-              PlaceholderShouldNotContainStructuredArgument.class, getClass());
+              Slf4jPlaceholderShouldNotContainStructuredArgument.class, getClass());
       helper
           .addSourceLines(
               "Test.java",
